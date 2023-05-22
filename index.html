@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<script>
+    async function handleSubmit() {
+        const url = "http://localhost/add"
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+            "num1": document.getElementById("num1").value,
+            "num2": document.getElementById("num2").value
+        });
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("http://localhost/add", requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+    }
+</script>
+
+<body>
+    <form>
+        <label for="num1">Number 1:</label><br>
+        <input type="text" id="num1" name="num1"><br>
+        <label for="num2">Number 2:</label><br>
+        <input type="text" id="num2" name="num2"><br><br>
+        <input type="button" value="Submit" onclick="handleSubmit()">
+    </form>
+
+</body>
+
+</html>
